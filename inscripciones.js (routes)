@@ -1,0 +1,11 @@
+// routes/inscripciones.js
+const express = require('express');
+const router = express.Router();
+const InscripcionController = require('../controllers/inscripcionController');
+
+// Rutas para las inscripciones
+router.get('/inscripciones', InscripcionController.getInscripciones); // Obtener todas las inscripciones
+router.get('/inscripciones/:id', InscripcionController.getInscripcionById); // Obtener inscripción por ID
+router.post('/inscripciones', InscripcionController.createInscripcion); // Crear una nueva inscripción
+
+module.exports = router;
