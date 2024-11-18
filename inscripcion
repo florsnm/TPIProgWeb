@@ -1,0 +1,25 @@
+module.exports = (sequelize, DataTypes) => {
+    const Inscripcion = sequelize.define('Inscripcion', {
+      anioInscripcion: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+      },
+      idEstudiante: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+      },
+      idCarrera: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+      }
+    });
+  
+    // Relaciones (asumiendo que los modelos Estudiante y Carrera ya están definidos)
+    Inscripcion.associate = (models) => {
+      Inscripcion.belongsTo(models.student, { foreignKey: 'idEstudiante' });
+      Inscripcion.belongsTo(models.Carreras, { foreignKey: 'idCarrera' });
+      Inscripcion.hasMany(models.materiaInscripta, { foreignKey: 'idInscripcion' });
+    };
+  
+    return Inscripcion;
+  };
